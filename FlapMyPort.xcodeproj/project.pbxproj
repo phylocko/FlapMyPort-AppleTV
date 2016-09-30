@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F5718E7A1D9E5E4E00DE0F65 /* simple-Gear.png in Resources */ = {isa = PBXBuildFile; fileRef = F5718E791D9E5E4E00DE0F65 /* simple-Gear.png */; };
 		F5935C5E1D9D1B20001D0F84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5935C5D1D9D1B20001D0F84 /* main.m */; };
 		F5935C611D9D1B20001D0F84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F5935C601D9D1B20001D0F84 /* AppDelegate.m */; };
 		F5935C641D9D1B20001D0F84 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5935C631D9D1B20001D0F84 /* ViewController.m */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F5718E791D9E5E4E00DE0F65 /* simple-Gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "simple-Gear.png"; sourceTree = "<group>"; };
 		F5935C591D9D1B20001D0F84 /* FlapMyPort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlapMyPort.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5935C5D1D9D1B20001D0F84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F5935C5F1D9D1B20001D0F84 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				F5935C631D9D1B20001D0F84 /* ViewController.m */,
 				F5935C871D9D1E91001D0F84 /* Controllers */,
 				F5935C651D9D1B20001D0F84 /* Main.storyboard */,
+				F5718E791D9E5E4E00DE0F65 /* simple-Gear.png */,
 				F5935C681D9D1B20001D0F84 /* Assets.xcassets */,
 				F5935C6A1D9D1B20001D0F84 /* Info.plist */,
 				F5935C5C1D9D1B20001D0F84 /* Supporting Files */,
@@ -190,6 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5935C691D9D1B20001D0F84 /* Assets.xcassets in Resources */,
+				F5718E7A1D9E5E4E00DE0F65 /* simple-Gear.png in Resources */,
 				F5935C671D9D1B20001D0F84 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,6 +364,7 @@
 				F5935C6F1D9D1B20001D0F84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

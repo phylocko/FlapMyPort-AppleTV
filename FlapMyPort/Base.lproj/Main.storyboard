@@ -15,8 +15,8 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="flapCell" rowHeight="57" id="4i3-D2-4iG" customClass="FlapCell">
-                                <rect key="frame" x="0.0" y="211" width="1920" height="57"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="flapCell" rowHeight="57" id="4i3-D2-4iG" customClass="FlapCell">
+                                <rect key="frame" x="0.0" y="211" width="1880" height="57"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4i3-D2-4iG" id="Kud-mP-SjW">
                                     <frame key="frameInset" width="1904" height="57"/>
@@ -54,6 +54,7 @@
                                     <outlet property="diagram" destination="kJG-cr-xTs" id="JUe-0X-hLf"/>
                                     <outlet property="flapNumberLabel" destination="AVQ-ic-9U3" id="HxP-QE-v8M"/>
                                     <outlet property="interfaceLabel" destination="MEj-WL-uHe" id="KWf-tp-cNk"/>
+                                    <segue destination="5gG-F7-D5F" kind="show" identifier="showHistory" id="vG5-ba-oG8"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -64,29 +65,182 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="jFg-qQ-hhJ">
                         <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="g6a-r9-6di">
-                            <rect key="frame" x="460" y="63" width="1000" height="70"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
-                            <segments>
-                                <segment title="10 mins"/>
-                                <segment title="1 hour"/>
-                                <segment title="3 hours"/>
-                                <segment title="6 hours"/>
-                                <segment title="1 day"/>
-                            </segments>
-                            <connections>
-                                <action selector="ChangeInterval:" destination="a3V-Jm-XmQ" eventType="valueChanged" id="Vws-tt-vVn"/>
-                            </connections>
-                        </segmentedControl>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="XsF-DF-jzy">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="g6a-r9-6di">
+                                <rect key="frame" x="0.0" y="63" width="1000" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                                <segments>
+                                    <segment title="10 mins"/>
+                                    <segment title="1 hour"/>
+                                    <segment title="3 hours"/>
+                                    <segment title="6 hours"/>
+                                    <segment title="1 day"/>
+                                </segments>
+                                <connections>
+                                    <action selector="ChangeInterval:" destination="a3V-Jm-XmQ" eventType="valueChanged" id="Vws-tt-vVn"/>
+                                </connections>
+                            </segmentedControl>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="JmZ-YM-Og9">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ghh-SA-aoq">
+                                <rect key="frame" x="1494" y="55" width="426" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Settings"/>
+                                <connections>
+                                    <segue destination="TV8-Ti-f14" kind="show" id="Dzn-C1-lPF"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="intervalPicker" destination="g6a-r9-6di" id="AQO-B9-5TA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dGp-gY-ndd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="uEs-Jz-KXT">
+                    <rect key="frame" x="0.0" y="0.0" width="1000" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                    <segments>
+                        <segment title="10 mins"/>
+                        <segment title="1 hour"/>
+                        <segment title="3 hours"/>
+                        <segment title="6 hours"/>
+                        <segment title="1 day"/>
+                    </segments>
+                    <connections>
+                        <action selector="ChangeInterval:" destination="a3V-Jm-XmQ" eventType="valueChanged" id="JGt-ay-dR3"/>
+                    </connections>
+                </segmentedControl>
             </objects>
             <point key="canvasLocation" x="1318" y="1118"/>
+        </scene>
+        <!--Flaps Options View Controller-->
+        <scene sceneID="ehK-PU-Pmq">
+            <objects>
+                <viewController id="TV8-Ti-f14" customClass="FlapsOptionsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eKm-5d-dIS"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wco-Vf-V6Q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="U0U-EE-eAj">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="API URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s2j-b7-uLo">
+                                <frame key="frameInset" minX="480" minY="145" width="960" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="continue"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wL7-o5-rbm">
+                                <frame key="frameInset" minX="711" minY="328" width="498" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PBJ-IQ-27W">
+                                <frame key="frameInset" minX="711" minY="407" width="498" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xh7-pg-2KJ">
+                                <frame key="frameInset" minX="711" minY="497" width="498" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Apply"/>
+                                <connections>
+                                    <action selector="ApplyButtonPressed:" destination="TV8-Ti-f14" eventType="primaryActionTriggered" id="16S-DB-7gC"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="✅" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBn-o2-jb6">
+                                <frame key="frameInset" minX="1247" minY="497" width="83" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="yyg-0J-n3n">
+                                <frame key="frameInset" minX="1360" minY="530" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="APIURL" destination="s2j-b7-uLo" id="fUQ-tD-BqQ"/>
+                        <outlet property="ApplyButton" destination="Xh7-pg-2KJ" id="dIv-5D-IG7"/>
+                        <outlet property="ProgressIndicator" destination="yyg-0J-n3n" id="yTs-8Q-NvP"/>
+                        <outlet property="StatusIndicator" destination="EBn-o2-jb6" id="58R-zb-luz"/>
+                        <outlet property="loginField" destination="wL7-o5-rbm" id="L0X-Jn-Tva"/>
+                        <outlet property="passwordField" destination="PBJ-IQ-27W" id="h8x-iD-uE9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EsU-ad-bPC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3890" y="1118"/>
+        </scene>
+        <!--Flap History View Controller-->
+        <scene sceneID="uL9-wD-9eY">
+            <objects>
+                <tableViewController id="5gG-F7-D5F" customClass="FlapHistoryViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="66" sectionFooterHeight="66" id="1nO-nZ-sF0">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Dk9-6b-lbk">
+                                <rect key="frame" x="0.0" y="211" width="1920" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dk9-6b-lbk" id="4kq-HS-utD">
+                                    <frame key="frameInset" width="1904" height="66"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="flapHistoryCell" rowHeight="94" id="dtA-Rv-Nuu" customClass="FlapHistoryCell">
+                                <rect key="frame" x="0.0" y="291" width="1920" height="94"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dtA-Rv-Nuu" id="BaP-BE-Rpp">
+                                    <frame key="frameInset" width="1904" height="94"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPx-hu-a9F">
+                                            <frame key="frameInset" minX="8" minY="30" width="600" height="35"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zz8-e7-h1u">
+                                            <frame key="frameInset" minX="1723" minY="19" width="146" height="57"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="statusLabel" destination="zz8-e7-h1u" id="CnB-z5-J8G"/>
+                                    <outlet property="timeLabel" destination="nPx-hu-a9F" id="K8g-Nf-h7E"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5gG-F7-D5F" id="ZzO-St-1IT"/>
+                            <outlet property="delegate" destination="5gG-F7-D5F" id="KgW-nQ-pHH"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dfl-21-M0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1318" y="2718"/>
         </scene>
         <!--FlapMyPort-->
         <scene sceneID="jsH-i5-Yst">

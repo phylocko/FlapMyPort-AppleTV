@@ -40,7 +40,9 @@
 	{
 		self.summaryLabel.text = [NSString stringWithFormat:@"%@: %@ (%@)", [self.flap objectForKey:@"hostname"], [[self.flap objectForKey:@"port"] objectForKey:@"ifName"], [[self.flap objectForKey:@"port"] objectForKey:@"ifAlias"]];
 	}
-    NSString *url = [NSString stringWithFormat: @"http://isweethome.ihome.ru/api/?ifindex=%@&flaphistory&host=%@&interval=%@", ifIndex, ipaddress, interval];
+    
+    // Hardcoded URL must die
+    NSString *url = [NSString stringWithFormat: @"http://virtualapi.flapmyport.com/?ifindex=%@&flaphistory&host=%@&interval=%@", ifIndex, ipaddress, interval];
 	
     flapList = [[NSMutableArray alloc] init];
     
@@ -142,6 +144,10 @@
     return cell;
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSLog(@"What is this?!");
+}
 
 @end
 

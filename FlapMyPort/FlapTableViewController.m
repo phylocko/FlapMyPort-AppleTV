@@ -48,14 +48,6 @@
     
     config = [NSUserDefaults standardUserDefaults];
     
-    // Временно!!!
-    [self setDefaultApiUrl];
-    [config setObject:@"vlad" forKey:@"UserLogin"];
-    [config setObject:@"0o9i8u" forKey:@"UserPassword"];
-    [config setValue:@"73600" forKey:@"flapHistoryInterval"];
-    
-    
-    
     if([self apiIsDefault] == YES)
     {
         NSString *message = @"You have VirtualAPI link configured so you are seeing demo data.\r\nPlease open Settings.app and configure your URL.\r\n\r\nVisit flapmyport.com for detailed instructions how to run FlapMyPort server on your network.";
@@ -214,10 +206,10 @@
 
 - (void) setDefaultApiUrl
 {
-    // [config setObject:@"http://virtualapi.flapmyport.com" forKey:@"ApiUrl"];
+    [config setObject:@"http://virtualapi.flapmyport.com" forKey:@"ApiUrl"];
     
     // Это добавляется ВРЕМЕННО!!!
-    [config setObject:@"http://isweethome.ihome.ru/api" forKey:@"ApiUrl"];
+    ///[config setObject:@"http://isweethome.ihome.ru/api" forKey:@"ApiUrl"];
 }
 
 - (BOOL) apiIsDefault

@@ -11,10 +11,17 @@
 
 @interface FlapsOptionsViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextField *APIURL;
+@property (weak, nonatomic) IBOutlet UITextField *loginField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
-@property (strong, nonatomic) NSDate			*startDate;
-@property (strong, nonatomic) NSDate			*endDate;
+@property (weak, nonatomic) IBOutlet UIButton *ApplyButton;
+@property (weak, nonatomic) IBOutlet UILabel *StatusIndicator;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *ProgressIndicator;
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *intervalPicker;
+
+- (IBAction)ApplyButtonPressed:(id)sender;
+
+
 
 @end

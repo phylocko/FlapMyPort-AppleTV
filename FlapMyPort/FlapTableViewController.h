@@ -13,7 +13,7 @@
 
 - (void) refresh: (NSMutableData *) data;
 - (void) connectionError: (NSError *) error;
-- (void) updateInterval;
+// - (void) updateInterval;
 - (void) enableControls;
 - (void) disableControls;
 - (void) pushError: (NSError * ) error title: (NSString *) title;
