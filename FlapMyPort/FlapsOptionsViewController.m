@@ -81,15 +81,10 @@
 {
     self.ApplyButton.enabled = NO;
     self.StatusIndicator.hidden = YES;
-    
-    // [self.ProgressIndicator startAnimation:0];
 }
 - (void) enableControls
 {
     self.ApplyButton.enabled = YES;
-    
-    // [self.ProgressIndicator stopAnimation:0];
-
 }
 
 - (BOOL) urlCorrect
@@ -131,7 +126,7 @@
 }
 - (void) connectionError: (NSError *) error
 {
-    // self.helperText.stringValue = @"Couldn't find API response. Check the URL or your credentials if needed.";
+    self.helperText.text = @"Couldn't find API response.\r\nCheck the URL or your credentials if needed.";
     
     self.StatusIndicator.text = @"❗️";
     self.StatusIndicator.hidden = NO;

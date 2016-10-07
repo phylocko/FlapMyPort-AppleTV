@@ -15,7 +15,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="flapCell" rowHeight="57" id="4i3-D2-4iG" customClass="FlapCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="flapCell" rowHeight="57" id="4i3-D2-4iG" customClass="FlapCell">
                                 <rect key="frame" x="0.0" y="211" width="1880" height="57"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4i3-D2-4iG" id="Kud-mP-SjW">
@@ -66,7 +66,7 @@
                     <navigationItem key="navigationItem" id="jFg-qQ-hhJ">
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" style="plain" id="XsF-DF-jzy">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="g6a-r9-6di">
+                            <segmentedControl key="customView" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" id="g6a-r9-6di">
                                 <rect key="frame" x="0.0" y="63" width="1000" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
@@ -204,16 +204,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" id="Dk9-6b-lbk">
-                                <rect key="frame" x="0.0" y="211" width="1920" height="66"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Dk9-6b-lbk">
+                                <rect key="frame" x="0.0" y="211" width="1880" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dk9-6b-lbk" id="4kq-HS-utD">
                                     <frame key="frameInset" width="1904" height="66"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="flapHistoryCell" rowHeight="112" id="dtA-Rv-Nuu" customClass="FlapHistoryCell">
-                                <rect key="frame" x="0.0" y="291" width="1920" height="112"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="flapHistoryCell" rowHeight="112" id="dtA-Rv-Nuu" customClass="FlapHistoryCell">
+                                <rect key="frame" x="0.0" y="291" width="1880" height="112"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dtA-Rv-Nuu" id="BaP-BE-Rpp">
                                     <frame key="frameInset" width="1904" height="112"/>
