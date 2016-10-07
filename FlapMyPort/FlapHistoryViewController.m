@@ -20,6 +20,7 @@
 	NSString		*interval;
 	NSString		*ifIndex;
 	NSString		*ipaddress;
+    NSUserDefaults  *config;
 }
 
 @end
@@ -30,6 +31,9 @@
 
 - (void) viewDidLoad
 {
+    
+    config = [NSUserDefaults standardUserDefaults];
+    
 	[self updateParams];
 	
 	if (   [   [   [self.flap objectForKey:@"port"] objectForKey:@"ifAlias"]         isKindOfClass:[NSNull class]])
@@ -41,9 +45,10 @@
 		self.summaryLabel.text = [NSString stringWithFormat:@"%@: %@ (%@)", [self.flap objectForKey:@"hostname"], [[self.flap objectForKey:@"port"] objectForKey:@"ifName"], [[self.flap objectForKey:@"port"] objectForKey:@"ifAlias"]];
 	}
     
-    // Hardcoded URL must die
-    NSString *url = [NSString stringWithFormat: @"http://virtualapi.flapmyport.com/?ifindex=%@&flaphistory&host=%@&interval=%@", ifIndex, ipaddress, interval];
-	
+    NSString *ApiURL = [config valueForKey:@"ApiUrl"];
+    
+    NSString *url = [NSString stringWithFormat: @"%@/?ifindex=%@&flaphistory&host=%@&interval=%@", ApiURL, ifIndex, ipaddress, interval];
+    
     flapList = [[NSMutableArray alloc] init];
     
     myConnection = [URLManager sharedInstance];
@@ -72,20 +77,6 @@
 	
 	ifIndex = [[self.flap objectForKey:@"port"] objectForKey:@"ifIndex"];
 	ipaddress = [self.flap objectForKey:@"ipaddress"];
-	
-}
-
-- (IBAction)refreshButtonTap:(UIBarButtonItem *)sender {
-
-	NSString *url = [NSString stringWithFormat: @"http://isweethome.ihome.ru/api/?ifindex=%@&flaphistory&host=%@&interval=%@", ifIndex, ipaddress, interval];
-
-	myConnection = [URLManager sharedInstance];
-	
-	myConnection.delegate = self;
-	
-	self.refreshButton.enabled = NO;
-
-	[myConnection getURL:url];
 	
 }
 

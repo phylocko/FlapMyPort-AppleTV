@@ -46,24 +46,12 @@
     
     flapList = [[NSMutableArray alloc] init];
     
-    config = [NSUserDefaults standardUserDefaults];
+    [self initConfig];
     
-    if([self apiIsDefault] == YES)
-    {
-        NSString *message = @"You have VirtualAPI link configured so you are seeing demo data.\r\nPlease open Settings.app and configure your URL.\r\n\r\nVisit flapmyport.com for detailed instructions how to run FlapMyPort server on your network.";
-        
-        [self showAlert:message title:@"No URL Configured"];
-    }
-    
-    if ([self apiUrlExists] == NO)
-    {
-        [self setDefaultApiUrl];
-        [self showAlert:@"You have no API URL configured so we're going to use VirtualAPI. Please open Preferences and type your URL." title:@"No URL Configured"];
-    }
+    [self updateIntervalPickerValue];
     
     [self disableControls];
     
-    // [self updateInterval];
     
     myConnection = [URLManager sharedInstance];
     [myConnection createSession];
@@ -73,16 +61,6 @@
 
 
 #pragma mark - My Methods
-
--(void) writeDefaultInterval
-{
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setValue:@"3600" forKey:@"flapHistoryInterval"];
-	
-    interval = @"3600";
-
-}
-
 
 - (NSString *) prepareUrlWithInterval
 {
@@ -96,22 +74,7 @@
 {
     [self pullConfig];
     
-    if( [[config valueForKey:@"ApiUrl"] isEqualToString:@""] )
-    {
-
-        [self enableControls];
-
-        
-        NSString *message = @"You have to configure ApiUrl first.\r\n\r\nPlease open the Settings.app and scroll down no FlapMyPort bundle.";
-        [self showAlert:message title:@"Configuration error"];
-        
-        
-        return;
-    }
-
-    
     [self disableControls];
-    // [self updateInterval];
     
     myConnection = [URLManager sharedInstance];
     myConnection.UserLogin = UserLogin;
@@ -121,29 +84,97 @@
 
 }
 
-- (void) pullConfig
+
+#pragma mark - Configuration loading and creation
+
+
+- (void) initConfig
 {
     config = [NSUserDefaults standardUserDefaults];
+
+    // Setting the empty values for unexistent config items.
     
-    if([config valueForKey:@"UserLogin"] == nil)
+    if ([config valueForKey:@"flapHistoryInterval"] == nil || [[config valueForKey:@"flapHistoryInterval"] isEqualToString:@""])
     {
-        [config setObject:@"" forKey:@"UserLogin"];
+        [config setObject:@"3600" forKey:@"flapHistoryInterval"];
     }
-    if([config valueForKey:@"UserPassword"] == nil)
-    {
-        [config setObject:@"" forKey:@"UserPassword"];
-    }
+    
     if([config valueForKey:@"ApiUrl"] == nil)
     {
         [config setObject:@"" forKey:@"ApiUrl"];
     }
-    UserLogin = [config valueForKey:@"UserLogin"];
-    UserPassword = [config valueForKey:@"UserPassword"];
+   
+    if([config valueForKey:@"UserLogin"] == nil)
+    {
+        [config setObject:@"" forKey:@"UserLogin"];
+    }
     
-    ApiUrl = [config valueForKey:@"ApiUrl"];
+    if([config valueForKey:@"UserPassword"] == nil)
+    {
+        [config setObject:@"" forKey:@"UserPassword"];
+    }
+
+    // Checking if ApiURL is empty of is default
     
+    if ([self apiUrlExists] == NO)
+    {
+        [self setDefaultApiUrl];
+        // Show certain alert
+        [self showAlert:@"We are going to use DEMO API.\r\nPlease go to settings and type your API URL.\r\n\r\nDeployment instructions can be found on flapmyport.com" title:@"You have no API URL configured"];
+        
+        return;
+    }
+    
+    if ([self apiIsDefault] == YES)
+    {
+        // Show certain alert
+        [self showAlert:@"You have default API URL configured. We are going to use DEMO API.\r\nPlease go to settings and type your API URL.\r\n\r\nDeployment instructions can be found on flapmyport.com" title:@"Default API URL configured"];
+        return;
+    }
+
 }
 
+
+- (void) pullConfig
+{
+    ApiUrl = [config valueForKey:@"ApiUrl"];
+    UserLogin = [config valueForKey:@"UserLogin"];
+    UserPassword = [config valueForKey:@"UserPassword"];
+    interval = [config valueForKey:@"flapHistoryInterval"];
+}
+
+- (BOOL) apiUrlExists
+{
+    if([config valueForKey:@"ApiUrl"] == nil)
+    {
+        return NO;
+    }
+    
+    if([[config valueForKey:@"ApiUrl"] isEqualToString:@""])
+    {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (void) setDefaultApiUrl
+{
+    [config setObject:@"http://virtualapi.flapmyport.com" forKey:@"ApiUrl"];
+}
+
+- (BOOL) apiIsDefault
+{
+    if( [[config valueForKey:@"ApiUrl"] isEqualToString:@"http://virtualapi.flapmyport.com"])
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
+
+#pragma mark - Controls operations
 
 - (void) enableControls
 {
@@ -158,8 +189,47 @@
 
     self.intervalPicker.enabled = NO;
     self.tableView.userInteractionEnabled = NO;
-    // [self.refreshControl beginRefreshing];
+
 }
+
+- (void) updateIntervalPickerValue
+{
+    [self pullConfig];
+    
+    if ([interval isEqualToString:@"600"])
+    {
+        self.intervalPicker.selectedSegmentIndex = 0;
+        return;
+    }
+    
+    if ([interval isEqualToString:@"3600"])
+    {
+        self.intervalPicker.selectedSegmentIndex = 1;
+        return;
+    }
+    
+    if ([interval isEqualToString:@"10800"])
+    {
+        self.intervalPicker.selectedSegmentIndex = 2;
+        return;
+    }
+    
+    if ([interval isEqualToString:@"21600"])
+    {
+        self.intervalPicker.selectedSegmentIndex = 3;
+        return;
+    }
+ 
+    if ([interval isEqualToString:@"86400"])
+    {
+        self.intervalPicker.selectedSegmentIndex = 4;
+        return;
+    }
+   
+    
+}
+
+#pragma mark - Local functions
 
 - (NSString *) shortDate: (NSString *) dateString
 {
@@ -189,38 +259,6 @@
     return readyString;
 }
 
-- (BOOL) apiUrlExists
-{
-    if([config valueForKey:@"ApiUrl"] == nil)
-    {
-        return NO;
-    }
-    
-    if([[config valueForKey:@"ApiUrl"] isEqualToString:@""])
-    {
-        return NO;
-    }
-    
-    return YES;
-}
-
-- (void) setDefaultApiUrl
-{
-    [config setObject:@"http://virtualapi.flapmyport.com" forKey:@"ApiUrl"];
-    
-    // Это добавляется ВРЕМЕННО!!!
-    ///[config setObject:@"http://isweethome.ihome.ru/api" forKey:@"ApiUrl"];
-}
-
-- (BOOL) apiIsDefault
-{
-    if( [[config valueForKey:@"ApiUrl"] isEqualToString:@"http://virtualapi.flapmyport.com"])
-    {
-        return YES;
-    }
-    
-    return NO;
-}
 
 
 #pragma mark - Refresh
@@ -269,18 +307,6 @@
     
 	
 }
-
-/*
-
-- (IBAction)refreshControl:(UIRefreshControl *)sender {
-	
-	
-	//self.refreshControl = sender;
-	
-	[self refreshButtonTap:self.refreshButton];
-	
-}
-*/
 
 - (void) parseResponse: (NSDictionary *) response
 {

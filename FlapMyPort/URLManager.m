@@ -37,6 +37,8 @@
 {
     self.data = [[NSMutableData alloc] init];
     
+    NSLog(@"Requesting URL: %@", urlString);
+    
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     self.task = [self.session dataTaskWithRequest:request];
