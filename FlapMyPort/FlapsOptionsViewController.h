@@ -1,10 +1,11 @@
 //
 //  FlapsOptionsViewController.h
-//  iSweetHome
+//  FlapMyPort
 //
-//  Created by Владислав Павкин on 17.07.15.
-//  Copyright (c) 2015 Владислав Павкин. All rights reserved.
+//  Created by Vladislav Pavkin on 30.09.16.
+//  Copyright (c) 2016 Vladislav Pavkin. All rights reserved.
 //
+
 
 #import <UIKit/UIKit.h>
 #import "FlapTableViewController.h"
@@ -17,7 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *ApplyButton;
 @property (weak, nonatomic) IBOutlet UILabel *StatusIndicator;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *ProgressIndicator;
+@property (weak, nonatomic) IBOutlet UILabel *helperText;
 
 
 - (IBAction)ApplyButtonPressed:(id)sender;

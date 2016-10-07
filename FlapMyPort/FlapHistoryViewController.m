@@ -1,10 +1,11 @@
 //
 //  FlapHistoryViewController.m
-//  TabBarTest-2
+//  FlapMyPort
 //
-//  Created by Владислав Павкин on 14.07.15.
-//  Copyright (c) 2015 Владислав Павкин. All rights reserved.
+//  Created by Vladislav Pavkin on 30.09.16.
+//  Copyright (c) 2016 Vladislav Pavkin. All rights reserved.
 //
+
 
 #import "FlapHistoryViewController.h"
 #import "URLManager.h"
@@ -36,14 +37,16 @@
     
 	[self updateParams];
 	
+
 	if (   [   [   [self.flap objectForKey:@"port"] objectForKey:@"ifAlias"]         isKindOfClass:[NSNull class]])
 	{
-		self.summaryLabel.text = [NSString stringWithFormat:@"%@: %@", [self.flap objectForKey:@"hostname"], [[self.flap objectForKey:@"port"] objectForKey:@"ifName"]];
+		self.flapHistoryTitle.title = [NSString stringWithFormat:@"%@: %@", [self.flap objectForKey:@"hostname"], [[self.flap objectForKey:@"port"] objectForKey:@"ifName"]];
 	}
 	else
 	{
-		self.summaryLabel.text = [NSString stringWithFormat:@"%@: %@ (%@)", [self.flap objectForKey:@"hostname"], [[self.flap objectForKey:@"port"] objectForKey:@"ifName"], [[self.flap objectForKey:@"port"] objectForKey:@"ifAlias"]];
+		self.flapHistoryTitle.title = [NSString stringWithFormat:@"%@: %@ (%@)", [self.flap objectForKey:@"hostname"], [[self.flap objectForKey:@"port"] objectForKey:@"ifName"], [[self.flap objectForKey:@"port"] objectForKey:@"ifAlias"]];
 	}
+
     
     NSString *ApiURL = [config valueForKey:@"ApiUrl"];
     
@@ -84,8 +87,6 @@
 
 - (void)refresh: (NSMutableData *) data
 {
-	self.refreshButton.enabled = YES;
-
 	
 	if(data != nil)
 	{
@@ -102,7 +103,6 @@
 		}
 	}
 	[self.tableView reloadData];
-    self.refreshButton.enabled = YES;
     
 }
 
@@ -111,7 +111,6 @@
 {
     [flapList removeAllObjects];
     [self.tableView reloadData];
-    self.refreshButton.enabled = YES;
 }
 
 

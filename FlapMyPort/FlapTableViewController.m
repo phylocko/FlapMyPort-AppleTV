@@ -1,10 +1,11 @@
 //
 //  FlapTableController.m
-//  TabBarTest-2
+//  FlapMyPort
 //
-//  Created by Владислав Павкин on 14.07.15.
-//  Copyright (c) 2015 Владислав Павкин. All rights reserved.
+//  Created by Vladislav Pavkin on 30.09.16.
+//  Copyright (c) 2016 Vladislav Pavkin. All rights reserved.
 //
+
 
 #import "FlapTableViewController.h"
 #import "FlapHistoryViewController.h"
@@ -42,8 +43,6 @@
 - (void) viewDidLoad
 {
 
-
-    
     flapList = [[NSMutableArray alloc] init];
     
     [self initConfig];
@@ -72,6 +71,8 @@
 
 - (void) requestData
 {
+    [self deactivateTimer];
+
     [self pullConfig];
     
     [self disableControls];
@@ -305,6 +306,7 @@
     
     [self enableControls];
     
+    [self activateTimer];
 	
 }
 
@@ -535,26 +537,26 @@
     
 	[self.tableView reloadData];
     [self enableControls];
-    // [self.refreshControl endRefreshing];
     [self pushError:error title:@"Connection error"];
     
 }
 
 
-- (IBAction) unwindToFlapList: (UIStoryboardSegue *) segue
-{
-	myConnection.delegate = self;
-	//[self refreshButtonTap:self.refreshButton];
-}
-
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(FlapCell *)sender
 {
+    
 	if ( [segue.identifier isEqualToString:@"showHistory"] )
 	{
 		FlapHistoryViewController *destination = [segue destinationViewController];
 		destination.flap = sender.flap;
 	}
+    
 	
+}
+
+- (IBAction)unwindFromSettings:(UIStoryboardSegue*)unwindSegue
+{
+    [self requestData];
 }
 
 - (void) pushError: (NSError * ) error title: (NSString *) title
@@ -582,7 +584,6 @@
 }
 
 - (IBAction)ChangeInterval:(UISegmentedControl *)sender {
-    NSLog(@"%ld", (long)sender.selectedSegmentIndex);
 
     int value = 3600;
     
@@ -614,7 +615,19 @@
     [self setNewInterval: value];
     
     [self requestData];
-    
-    // [self updateInterval];
+
 }
+
+#pragma mark - Timer operations
+
+- (void) activateTimer
+{
+    self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(requestData) userInfo:nil repeats:YES];
+}
+
+- (void) deactivateTimer
+{
+    [self.refreshTimer invalidate];
+}
+
 @end

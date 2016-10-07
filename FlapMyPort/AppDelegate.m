@@ -2,9 +2,10 @@
 //  AppDelegate.m
 //  FlapMyPort
 //
-//  Created by Владислав Павкин on 29.09.16.
-//  Copyright © 2016 Vladislav Pavkin. All rights reserved.
+//  Created by Vladislav Pavkin on 30.09.16.
+//  Copyright (c) 2016 Vladislav Pavkin. All rights reserved.
 //
+
 
 #import "AppDelegate.h"
 

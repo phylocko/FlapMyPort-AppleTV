@@ -83,13 +83,14 @@
                             </segmentedControl>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="JmZ-YM-Og9">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ghh-SA-aoq">
-                                <rect key="frame" x="1494" y="55" width="426" height="86"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" id="ghh-SA-aoq">
+                                <rect key="frame" x="1803" y="59" width="117" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <state key="normal" title="Settings"/>
                                 <connections>
-                                    <segue destination="TV8-Ti-f14" kind="show" id="Dzn-C1-lPF"/>
+                                    <segue destination="TV8-Ti-f14" kind="popoverPresentation" identifier="showSettings" popoverAnchorView="ghh-SA-aoq" id="Dzn-C1-lPF">
+                                        <popoverArrowDirection key="popoverArrowDirection" down="YES" right="YES"/>
+                                    </segue>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -126,32 +127,32 @@
                         <viewControllerLayoutGuide type="bottom" id="Wco-Vf-V6Q"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="U0U-EE-eAj">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="API URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s2j-b7-uLo">
-                                <frame key="frameInset" minX="480" minY="145" width="960" height="46"/>
+                                <frame key="frameInset" minX="148" minY="194" width="727" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="continue"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wL7-o5-rbm">
-                                <frame key="frameInset" minX="711" minY="328" width="498" height="46"/>
+                                <frame key="frameInset" minX="262" minY="286" width="498" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PBJ-IQ-27W">
-                                <frame key="frameInset" minX="711" minY="407" width="498" height="46"/>
+                                <frame key="frameInset" minX="262" minY="377" width="498" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xh7-pg-2KJ">
-                                <frame key="frameInset" minX="711" minY="497" width="498" height="86"/>
+                                <frame key="frameInset" minX="262" minY="467" width="498" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                 <state key="normal" title="Apply"/>
@@ -160,23 +161,33 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="✅" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBn-o2-jb6">
-                                <frame key="frameInset" minX="1247" minY="497" width="83" height="86"/>
+                                <frame key="frameInset" minX="817" minY="467" width="83" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="yyg-0J-n3n">
-                                <frame key="frameInset" minX="1360" minY="530" width="20" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4J6-qS-gLb">
+                                <frame key="frameInset" minX="361" minY="62" width="300" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jG-NQ-PpX">
+                                <frame key="frameInset" minX="148" minY="604" width="727" height="236"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="APIURL" destination="s2j-b7-uLo" id="fUQ-tD-BqQ"/>
                         <outlet property="ApplyButton" destination="Xh7-pg-2KJ" id="dIv-5D-IG7"/>
-                        <outlet property="ProgressIndicator" destination="yyg-0J-n3n" id="yTs-8Q-NvP"/>
                         <outlet property="StatusIndicator" destination="EBn-o2-jb6" id="58R-zb-luz"/>
+                        <outlet property="helperText" destination="6jG-NQ-PpX" id="cYu-k9-7Q2"/>
                         <outlet property="loginField" destination="wL7-o5-rbm" id="L0X-Jn-Tva"/>
                         <outlet property="passwordField" destination="PBJ-IQ-27W" id="h8x-iD-uE9"/>
                     </connections>
@@ -185,7 +196,7 @@
             </objects>
             <point key="canvasLocation" x="3890" y="1118"/>
         </scene>
-        <!--Flap History View Controller-->
+        <!--Port flap history-->
         <scene sceneID="uL9-wD-9eY">
             <objects>
                 <tableViewController id="5gG-F7-D5F" customClass="FlapHistoryViewController" sceneMemberID="viewController">
@@ -193,19 +204,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Dk9-6b-lbk">
-                                <rect key="frame" x="0.0" y="211" width="1880" height="66"/>
+                            <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" id="Dk9-6b-lbk">
+                                <rect key="frame" x="0.0" y="211" width="1920" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dk9-6b-lbk" id="4kq-HS-utD">
                                     <frame key="frameInset" width="1904" height="66"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="flapHistoryCell" rowHeight="94" id="dtA-Rv-Nuu" customClass="FlapHistoryCell">
-                                <rect key="frame" x="0.0" y="291" width="1880" height="94"/>
+                            <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="flapHistoryCell" rowHeight="112" id="dtA-Rv-Nuu" customClass="FlapHistoryCell">
+                                <rect key="frame" x="0.0" y="291" width="1920" height="112"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dtA-Rv-Nuu" id="BaP-BE-Rpp">
-                                    <frame key="frameInset" width="1904" height="94"/>
+                                    <frame key="frameInset" width="1904" height="112"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPx-hu-a9F">
@@ -236,11 +247,15 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Port flap history" id="DNl-sI-Gb6"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="flapHistoryTitle" destination="DNl-sI-Gb6" id="PCv-9s-pef"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dfl-21-M0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1318" y="2718"/>
+            <point key="canvasLocation" x="1318" y="2675"/>
         </scene>
         <!--FlapMyPort-->
         <scene sceneID="jsH-i5-Yst">

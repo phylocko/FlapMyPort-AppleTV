@@ -2,9 +2,10 @@
 //  URLManager.m
 //  FlapMyPort
 //
-//  Created by Vladislav Pavkin on 05/08/16.
-//  Copyright © 2016 Vladislav Pavkin. All rights reserved.
+//  Created by Vladislav Pavkin on 30.09.16.
+//  Copyright (c) 2016 Vladislav Pavkin. All rights reserved.
 //
+
 
 #import "URLManager.h"
 
@@ -36,8 +37,6 @@
 - (void) getURL: (NSString *) urlString
 {
     self.data = [[NSMutableData alloc] init];
-    
-    NSLog(@"Requesting URL: %@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];

@@ -1,10 +1,11 @@
 //
 //  FlapTableViewController.h
-//  TabBarTest-2
+//  FlapMyPort
 //
-//  Created by Владислав Павкин on 14.07.15.
-//  Copyright (c) 2015 Владислав Павкин. All rights reserved.
+//  Created by Vladislav Pavkin on 30.09.16.
+//  Copyright (c) 2016 Vladislav Pavkin. All rights reserved.
 //
+
 
 #import <UIKit/UIKit.h>
 
@@ -23,6 +24,7 @@
 
 @property (strong, nonatomic) NSMutableData		*data;
 @property (strong, nonatomic) NSMutableArray	*json;
+@property (strong, nonatomic) NSTimer   *refreshTimer;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *intervalPicker;
 

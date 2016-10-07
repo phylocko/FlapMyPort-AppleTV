@@ -1,10 +1,11 @@
 //
 //  FlapsOptionsViewController.m
-//  iSweetHome
+//  FlapMyPort
 //
-//  Created by Владислав Павкин on 17.07.15.
-//  Copyright (c) 2015 Владислав Павкин. All rights reserved.
+//  Created by Vladislav Pavkin on 30.09.16.
+//  Copyright (c) 2016 Vladislav Pavkin. All rights reserved.
 //
+
 
 #import "FlapsOptionsViewController.h"
 #import "FlapTableViewController.h"
@@ -81,7 +82,6 @@
     self.ApplyButton.enabled = NO;
     self.StatusIndicator.hidden = YES;
     
-    self.ProgressIndicator.hidden = NO;
     // [self.ProgressIndicator startAnimation:0];
 }
 - (void) enableControls
@@ -89,7 +89,7 @@
     self.ApplyButton.enabled = YES;
     
     // [self.ProgressIndicator stopAnimation:0];
-    self.ProgressIndicator.hidden = YES;
+
 }
 
 - (BOOL) urlCorrect
@@ -116,14 +116,14 @@
             self.StatusIndicator.text= @"✅";
             self.StatusIndicator.hidden = NO;
             
-            // self.helperText.stringValue = @"This url is a correct url! Stored to config.";
+            self.helperText.text = @"This url is a correct url! Stored to config.";
             [self enableControls];
             return;
         }
     }
     
     
-    //self.helperText.stringValue = @"Couldn't find API response. Check the URL or your credentials if needed.";
+    self.helperText.text = @"Couldn't find API response.\r\nCheck the URL or your credentials if needed.";
     self.StatusIndicator.text = @"❗️";
     self.StatusIndicator.hidden = NO;
     

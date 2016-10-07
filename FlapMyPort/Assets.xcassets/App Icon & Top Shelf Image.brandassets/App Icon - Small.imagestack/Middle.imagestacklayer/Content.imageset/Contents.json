@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "tv",
+      "filename" : "mid_240.png",
       "scale" : "1x"
     }
   ],
