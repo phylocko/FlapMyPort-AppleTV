@@ -17,14 +17,14 @@
 
     URLManager		*myConnection;
 	NSString		*interval;
-    
+    AVAudioPlayer   *beepPlayer;
 	NSMutableArray	*flapList;
 
     BOOL            connectionError;
     NSError         *connError;
     
-    NSString        *oldestFlapID;
-    NSString        *lastOldestFlapID;
+    NSInteger        oldestFlapID;
+    NSInteger        lastOldestFlapID;
     
     NSUserDefaults  *config;
     NSString        *ApiUrl;
@@ -42,6 +42,11 @@
 
 - (void) viewDidLoad
 {
+
+    oldestFlapID = 0;
+    lastOldestFlapID = 0;
+    
+    [self initPlayer];
 
     flapList = [[NSMutableArray alloc] init];
     
@@ -313,7 +318,30 @@
 - (void) parseResponse: (NSDictionary *) response
 {
     NSArray *sourceHosts = [response objectForKey:@"hosts"];
- 
+    
+    NSDictionary *params = [response objectForKey:@"params"];
+    
+    NSLog(@"1: OldestFlapId: %li", (long)oldestFlapID);
+    NSLog(@"1: LastOldestFlapId: %li", (long)lastOldestFlapID);
+    
+    // Check the oldestFlapID
+    NSString *oldestFlapID_candidate = [params objectForKey:@"oldestFlapID"];
+    oldestFlapID = [oldestFlapID_candidate integerValue];
+    
+    NSLog(@"2: OldestFlapId: %li", (long)oldestFlapID);
+    NSLog(@"2: LastOldestFlapId: %li", (long)lastOldestFlapID);
+    
+    // Check if OldestFlapID > lastOldestFlapID
+    if (oldestFlapID > lastOldestFlapID)
+    {
+        lastOldestFlapID = oldestFlapID;
+        [beepPlayer play];
+    }
+    
+    
+    NSLog(@"3: OldestFlapId: %li", (long)oldestFlapID);
+    NSLog(@"3: LastOldestFlapId: %li", (long)lastOldestFlapID);
+    
     for (NSDictionary *sourceHost in sourceHosts)
     {
         if (sourceHost)
@@ -584,7 +612,7 @@
 }
 
 - (IBAction)ChangeInterval:(UISegmentedControl *)sender {
-
+    
     int value = 3600;
     
     if (sender.selectedSegmentIndex == 0)
@@ -628,6 +656,17 @@
 - (void) deactivateTimer
 {
     [self.refreshTimer invalidate];
+}
+
+#pragma mark - Player
+
+- (void) initPlayer
+{
+    
+    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"linkdown" ofType:@"aif"];
+    NSURL *beepFileUrl = [NSURL fileURLWithPath:soundFilePath];
+    beepPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:beepFileUrl error:nil];
+
 }
 
 @end

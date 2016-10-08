@@ -17,7 +17,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    UIApplication *flapMyPort = [UIApplication sharedApplication];
+    flapMyPort.idleTimerDisabled = YES;
+  
     return YES;
 }
 

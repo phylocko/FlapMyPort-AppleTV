@@ -111,7 +111,7 @@
             self.StatusIndicator.text= @"✅";
             self.StatusIndicator.hidden = NO;
             
-            self.helperText.text = @"This url is a correct url! Stored to config.";
+            self.helperText.text = @"This is a correct url! Stored to config.";
             [self enableControls];
             return;
         }
